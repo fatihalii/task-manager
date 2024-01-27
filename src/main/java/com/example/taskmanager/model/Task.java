@@ -7,14 +7,19 @@ import lombok.Data;
 @Data
 @Table(name = "tasks")
 public class Task {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     public String name;
 
     public String category;
 
     public boolean completion;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }
